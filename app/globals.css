@@ -3,31 +3,82 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+    --bg-theme: linear-gradient(316deg, #3e187a 0%, #994ecc 74%);
+    --text-color: #fff;
+    --bg-button: #ff7f00;
+    --color-button: #fff;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    background: var(--bg-theme);
+    color: var(--text-color)
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+button {
+    background: var(--bg-button);
+    color: var(--color-button);
+}
+
+svg {
+    fill: var(--text-color);
+}
+
+.neon-effect {
+    box-shadow: 0 0 2px var(--bg-button), 0 0 3px;
+    transition: box-shadow 0.3s ease;
+}
+
+[data-theme="dark"] {
+    --bg-theme: linear-gradient(175deg, rgba(23, 23, 23, 0.5), rgba(51, 51, 51, 0.5));
+    --bg-sidebard: rgb(40, 40, 40, 0.8);
+    --text-color: #fff;
+    --bg-selectButton: rgba(20, 20, 20, 0.7);
+    --bg-selectButtonActive: rgba(20, 20, 20, 1);
+    --bg-button: #11111e;
+}
+
+[data-theme="purple"] {
+    --bg-theme: linear-gradient(175deg, rgba(153,78,204,1) 0%, rgba(96,47,114,0.9) 50%, rgba(62,24,122,1) 100%);
+    --bg-sidebard: rgba(125, 16, 165, 0.5);
+    --text-color: #fff;
+    --bg-selectButton: #ff8288aa;
+    --bg-selectButtonActive: #ff7179;
+    --bg-button: #ff7179;
+}
+
+[data-theme="light"] {
+    --bg-theme: #f7f7f7;
+    --bg-sidebard: #e4e4e4;
+    --text-color: #2d2d2d;
+    --bg-button: #2d2d2d;
+    --bg-selectButton: #cececeba;
+    --bg-selectButtonActive: #cecece;
+    --color-button: #fff;
+}
+
+@layer components {
+
+    .main-container {
+        @apply flex min-h-screen flex-1 flex-col items-center px-6 py-8;
+      }
+
+    .titleText {
+        @apply text-3xl font-bold
+    }
+
+    .mainButton {
+        @apply py-2 px-3 rounded-lg drop-shadow-lg shadow-[--bg-button] transition-all delay-100 neon-effect hover:scale-105 hover:opacity-85
+    }
+
+    .leftsidebar {
+        @apply sticky left-0 top-0 z-20 flex h-screen flex-col justify-between overflow-auto rounded-r-2xl shadow-sm neon-effect bg-[--bg-sidebard] px-5 py-9 w-auto md:w-[270px];
+    }
+
+    .selectButton {
+        @apply w-full text-sm flex items-center gap-3 bg-[--bg-selectButton] px-2 py-3 rounded-xl transition-all delay-100 hover:opacity-85 hover:selectButtonActive
+    }
+
+    .selectButtonActive {
+        @apply neon-effect bg-[--bg-selectButtonActive]
+    }
 }
