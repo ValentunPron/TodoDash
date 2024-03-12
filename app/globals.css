@@ -30,7 +30,7 @@ svg {
 
 [data-theme="dark"] {
     --bg-theme: linear-gradient(175deg, rgba(23, 23, 23, 0.5), rgba(51, 51, 51, 0.5));
-    --bg-sidebard: rgb(40, 40, 40, 0.8);
+    --bg-sidebard: rgb(40, 40, 40, 1);
     --text-color: #fff;
     --bg-selectButton: rgba(20, 20, 20, 0.7);
     --bg-selectButtonActive: rgba(20, 20, 20, 1);
@@ -39,7 +39,7 @@ svg {
 
 [data-theme="purple"] {
     --bg-theme: linear-gradient(175deg, rgba(153,78,204,1) 0%, rgba(96,47,114,0.9) 50%, rgba(62,24,122,1) 100%);
-    --bg-sidebard: rgba(125, 16, 165, 0.5);
+    --bg-sidebard: rgba(125, 16, 165, 1);
     --text-color: #fff;
     --bg-selectButton: #ff8288aa;
     --bg-selectButtonActive: #ff7179;
@@ -59,7 +59,7 @@ svg {
 @layer components {
 
     .main-container {
-        @apply flex min-h-screen flex-1 flex-col items-center px-6 py-8;
+        @apply flex min-h-screen flex-1 flex-col items-center px-6 py-8 my-12 sm:my-0;
       }
 
     .titleText {
@@ -71,7 +71,7 @@ svg {
     }
 
     .leftsidebar {
-        @apply sticky left-0 top-0 z-20 flex h-screen flex-col justify-between overflow-auto rounded-r-2xl shadow-sm neon-effect bg-[--bg-sidebard] px-5 py-9 w-auto md:w-[270px];
+        @apply sticky left-0 top-0 z-20 h-screen flex-col justify-between overflow-auto rounded-r-2xl shadow-sm neon-effect bg-[--bg-sidebard] px-5 py-9 w-auto lg:w-[270px] hidden sm:flex;
     }
 
     .selectButton {
@@ -80,5 +80,21 @@ svg {
 
     .selectButtonActive {
         @apply neon-effect bg-[--bg-selectButtonActive]
+    }
+
+    .bottombar {
+        @apply fixed bottom-0 z-10 w-full rounded-t-3xl shadow-sm neon-effect bg-[--bg-sidebard] py-4 sm:hidden;
+      }
+    
+    .bottombar_container {
+        @apply flex items-center justify-center px-5 gap-5;
+    }
+
+    .topbar {
+        @apply fixed top-0 z-10 w-full rounded-b-xl neon-effect bg-[--bg-sidebard] py-2 sm:hidden;
+      }
+    
+    .topbar_container {
+        @apply flex items-center justify-between px-5 gap-5;
     }
 }
